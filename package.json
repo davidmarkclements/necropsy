@@ -1,6 +1,6 @@
 {
   "name": "necropsy",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "dissect dead node service core dumps with llnode using a single command",
   "main": "index.js",
   "bin": {
