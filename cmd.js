@@ -41,16 +41,18 @@ makeRanges.on('exit', function (code) {
     console.error('Error getting memory ranges')
     process.exit(code)
   }
-  var lldb = cp.spawn('lldbk', [bin, '-c', core], {
+  var lldb = cp.spawn('lldb', [bin, '-c', core], {
     stdio: 'inherit',
     env: Object.assign({
       LLNODE_RANGESFILE: ranges
     }, process.env)
   })
-  lldb.on('error', function (error) {
-    if (error.code === 'ENOENT') {
+  lldb.on('error', function (err) {
+    if (err.code === 'ENOENT') {
       console.error('Cannot find lldb, try running necropsy setup')
+      return
     }
+    throw err
   })
 })
 
