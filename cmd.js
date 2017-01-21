@@ -43,9 +43,9 @@ makeRanges.on('exit', function (code) {
   }
   var lldb = cp.spawn('lldb', [bin, '-c', core], {
     stdio: 'inherit',
-    env: Object.assign({
+    env: Object.assign({}, process.env, {
       LLNODE_RANGESFILE: ranges
-    }, process.env)
+    })
   })
   lldb.on('error', function (err) {
     if (err.code === 'ENOENT') {
